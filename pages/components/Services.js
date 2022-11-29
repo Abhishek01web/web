@@ -7,27 +7,27 @@ const Data = [
     {
         "id": 1,
         "title": "design",
-        "discription": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, tempore!"
+        "discription": "the process and skill of making drawings that show how something should be made, how it will work, etc."
     },
     {
         "id": 2,
         "title": "development",
-        "discription": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, tempore!"
+        "discription": "the process of creating something more advanced; a more advanced product"
     },
     {
         "id": 3,
         "title": "seo",
-        "discription": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, tempore!"
+        "discription": "the process of getting traffic from free, organic, editorial, or natural search results in search engines."
     },
     {
         "id": 4,
         "title": "graphics",
-        "discription": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, tempore!"
+        "discription": "Graphics are an important part of Design because they can help communicate ideas and messages to users. "
     },
     {
         "id": 5,
         "title": "editing",
-        "discription": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, tempore!"
+        "discription": "Editing is used to structure and present all video & images information,"
     }
 ]
 
