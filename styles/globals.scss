@@ -19,6 +19,67 @@
   color: transparent;
 }
 
+@mixin gradient-text-1 {
+  background-image: linear-gradient(
+    to left top,
+    #051937,
+    #004d7a,
+    #008793,
+    #00bf72,
+    #a8eb12
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@mixin heading {
+  @include hw(10vh, 25%);
+  @include flex;
+  justify-content: space-around;
+  backdrop-filter: blur(5px);
+  border: 2px solid $waa;
+  box-shadow: inset 1rem 1rem 1rem $b, 1rem 1rem 1rem $b;
+  border-bottom-right-radius: 25px;
+  border-top-left-radius: 25px;
+  h2 {
+    @include gradient-text;
+    font-size: 4rem;
+  }
+  p {
+    font-size: 2rem;
+    color: $w;
+    text-shadow: 0.5rem 0.5rem 0.5rem $b;
+  }
+}
+
+@mixin page {
+  @include hw(100vh, 100%);
+  @include flex;
+  flex-direction: column;
+}
+
+@mixin button {
+  @include gradient-text;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 700;
+  backdrop-filter: blur(10px);
+  box-shadow: inset 1rem 1rem 1rem $b, 1rem 1rem 1rem $b;
+  border: 1px solid $waa;
+  border-bottom-right-radius: 25px;
+  border-top-left-radius: 25px;
+  transition: all 0.2.5s linear;
+  &:hover {
+    color: $xiketic;
+    text-shadow: -1px 0 $w, 0 1px $w, 1px 0 $w, 0 -1px $w;
+    box-shadow: 0px 0px 5px $b;
+    background: none;
+    border-color: #fff;
+    letter-spacing: 2px;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -53,14 +114,9 @@ nav {
   z-index: 99;
   .logo {
     height: 100%;
-    h1 {
-      color: $w;
-      text-shadow: 0.8rem 0.8rem 1rem #000;
-      font-size: 5rem;
-      font-weight: 700;
-    }
     img {
       height: 100%;
+      animation: rotate 0.5s linear;
       cursor: pointer;
     }
   }
@@ -80,9 +136,9 @@ nav {
         text-shadow: 0.8rem 0.8rem 1rem $b;
         transition: all 0.1s linear;
         &:hover {
-           @include gradient-text;
-           font-size: 2.5rem;
-           font-weight: 700;
+          @include gradient-text;
+          font-size: 2.5rem;
+          font-weight: 700;
         }
       }
     }
@@ -121,25 +177,9 @@ nav {
       }
     }
     a {
-      @include gradient-text;
-      text-transform: uppercase;
-      text-decoration: none;
-      font-size: 2rem;
-      font-weight: 700;
-      backdrop-filter: blur(10px);
-      box-shadow: inset 1rem 1rem 1rem $b, 1rem 1rem 1rem $b;
+      @include button;
       padding: 1rem;
-      border: 1px solid $waa;
-      border-radius: 20px;
-      transition: all 0.2.5s linear;
-      &:hover {
-        color: $xiketic;
-        text-shadow: -1px 0 $w, 0 1px $w, 1px 0 $w, 0 -1px $w;
-        box-shadow: 0px 0px 5px $b;
-        background: none;
-        border-color: #fff;
-        letter-spacing: 2px;
-      }
+      font-size: 2.5rem;
     }
   }
 
@@ -148,62 +188,392 @@ nav {
     @include flex;
     position: relative;
     &::after {
-      content: '';
-      @include hw(30px, 25px);
+      content: "";
+      @include hw(50px, 50px);
       position: absolute;
       top: 25%;
       left: 15%;
-      border-radius: 100%;
+      border-radius: 10px;
       border: 1px solid $waa;
       background: $wa;
       backdrop-filter: blur(5px);
       box-shadow: inset 1rem 1rem 1rem $b, 1rem 1rem 1rem $b;
-      animation: ami 6s linear infinite;
+      animation: ami 8s linear infinite;
     }
     &::before {
-      content: '';
-      @include hw(30px, 25px);
+      content: "";
+      @include hw(50px, 50px);
       position: absolute;
-      top: 65%;
+      top: 30%;
       left: 60%;
-      border-radius: 50%;
+      border-radius: 10px;
       border: 1px solid $waa;
       background: $wa;
       backdrop-filter: blur(5px);
       box-shadow: inset 1rem 1rem 1rem $b, 1rem 1rem 1rem $b;
-      animation: ami 6s linear  5s infinite;
+      animation: ami 8s linear 6s infinite;
     }
     img {
       height: 80%;
-      animation: img 6s linear infinite;
     }
   }
 }
 
 @keyframes ami {
   0% {
-     opacity: 0;
-     top: 30%;
+    opacity: 0;
+    transform: rotate(45deg);
   }
   50% {
     opacity: 1;
+    transform: rotate(0deg);
   }
   100% {
     opacity: 0;
-    top: 60%;
+    transform: rotate(45deg);
+    top: 90%;
   }
 }
 
-@keyframes img {
-  0% {
-     padding: 2%;
+.About {
+  @include page;
+  .heading {
+    @include heading;
   }
-  50% {
-    padding: 0;
-    transform: rotate(2deg);
+  .main {
+    @include hw(55vh, 80%);
+    @include flex;
+    justify-content: space-around;
+    .dev {
+      @include flex;
+      margin-right: 20px;
+      padding: 2%;
+      flex-direction: column;
+      backdrop-filter: blur(5px);
+      border: 2px solid $waa;
+      box-shadow: inset 1rem 1rem 1rem $b, 1rem 1rem 1rem $b;
+      border-bottom-right-radius: 25px;
+      border-top-left-radius: 25px;
+      h3 {
+        @include gradient-text;
+        font-size: 4rem;
+      }
+      p {
+        color: $w;
+        font-size: 2rem;
+        text-align: center;
+        margin: 10px 0 10px 0;
+      }
+      a {
+        @include button;
+        padding: 1rem;
+        font-size: 2.5rem;
+      }
+    }
+    .img {
+      @include flex;
+    }
   }
-  100% {
-    padding: 2%;
+}
+
+.Project {
+  @include page;
+  .heading {
+    @include heading;
+  }
+  .main {
+    @include hw(60vh, 90%);
+    @include flex;
+    justify-content: space-around;
+    .p {
+      @include hw(300px, 300px);
+      @include flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      backdrop-filter: blur(5px);
+      border: 2px solid $waa;
+      box-shadow: inset 1rem 1rem 1rem $b, 1rem 1rem 1rem $b;
+      border-radius: 20px;
+      .img {
+        @include hw(65%, 100%);
+        @include flex;
+        img {
+          @include hw(100%, 100%);
+          border-radius: 20px;
+          border: 2px solid $ga;
+        }
+      }
+      .pf {
+        @include hw(30%, 90%);
+        @include flex;
+        img {
+          @include hw(60px, 60px);
+          border-radius: 50%;
+          border: 2px solid $waa;
+          box-shadow: inset 1rem 1rem 1rem $b, 1rem 1rem 1rem $b;
+        }
+        .cont {
+          margin-left: 10px;
+          h4 {
+            font-size: 2.5rem;
+            @include gradient-text;
+          }
+          p {
+            color: $w;
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+.Blog {
+  @include page;
+  .heading {
+    @include heading;
+  }
+  .main {
+    @include hw(60vh, 100%);
+    @include flex;
+    flex-wrap: wrap;
+    .b {
+      @include hw(200px, 350px);
+      @include flex;
+      backdrop-filter: blur(5px);
+      border: 2px solid $waa;
+      box-shadow: inset 1rem 1rem 1rem $b, 1rem 1rem 1rem $b;
+      border-radius: 20px;
+      margin: 20px;
+      .img {
+        @include hw(100%, 100%);
+        img {
+          @include hw(100%, 100%);
+          border-radius: 20px;
+        }
+      }
+      .cont {
+        @include hw(100%, 100%);
+        @include flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1%;
+        margin-left: 10px;
+        h4 {
+          font-size: 2rem;
+          @include gradient-text;
+          text-transform: capitalize;
+        }
+        p {
+          color: $w;
+          font-size: 1.5rem;
+          margin: 5px 0 5px 0;
+        }
+        a {
+          @include button;
+          padding: 0.8rem;
+          font-size: 1.5rem;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+.Services {
+  @include page;
+  @include hw(100%, 100%);
+  .heading {
+    @include heading;
+  }
+  .main {
+    @include hw(100%, 100%);
+    @include flex;
+    flex-direction: column;
+    .services {
+      @include hw(100%, 100%);
+      @include flex;
+      flex-wrap: wrap;
+      div {
+        @include hw(300px, 300px);
+        @include flex;
+        padding: 25px;  
+        margin: 40px;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        transition: all 0.2s linear;
+        border-radius: 50%;
+        border: 2px solid $waa;
+        box-shadow: inset 2rem 2rem 1rem $b, 2rem 2rem 1rem $b;
+        span {
+          @include hw(60px, 60px);
+          @include flex;
+          color: $w;
+          font-size: 26px;
+          font-weight: 700;
+          flex-direction: column;
+          justify-content: center;
+          text-align: center;
+          border-radius: 50%;
+          transition: all 0.2s linear;
+          text-shadow: 1px 5px 5px $b;
+          border: 1px solid $waa;
+          box-shadow: inset 1rem 1rem 1rem $b, 1rem 1rem 1rem $b;
+        }
+
+        h2 {
+          font-size: 3rem;
+          margin-top: 10px;
+          @include gradient-text;
+          letter-spacing: 1px;
+          text-transform: capitalize;
+        }
+        p {
+          font-size: 1.5rem;
+          margin-bottom: 10px;
+          color: $w;
+          text-shadow: 1px 1px 10px $b;
+          letter-spacing: 1px;
+        }
+        a {
+          text-decoration: none;
+          color: $w;
+          padding: 10px;
+          font-size: 22px;
+          font-weight: 700;
+          border-radius: 20px;
+          letter-spacing: 1.5px;
+          box-shadow: inset -20px -20px 25px $b, 2px 3px 15px $waa;
+          text-shadow: -1px 0 5px $b, 0 1px 5px $b;
+          transition: all 0.2s linear;
+          border: 2px solid $waa;
+          &:hover {
+            color: $w;
+            border: 0.01px solid $waa;
+            box-shadow: none;
+          }
+        }
+      }
+
+      div:hover {
+        border-radius: 20%;
+      }
+    }
+
+    .skills {
+      @include hw(100%, 100%);
+      @include flex;
+      overflow: scroll;
+      .skill {
+        @include gradient-text;
+        padding: 1%;
+        margin: 10px;
+        border: 1px solid $waa;
+        backdrop-filter: blur(5px);
+        box-shadow: inset 0.5rem 0.5rem 1rem $b, 0.5rem 0.5rem 1rem $b;
+        border-radius: 20px;
+        span {
+          font-size: 2.5rem;
+        }
+      }
+    }
+  }
+}
+
+.Contact {
+  @include page;
+  .heading {
+    @include heading;
+  }
+  .main {
+    @include hw(80vh, 100%);
+    @include flex;
+    .img {
+      @include hw(100%, 40%);
+      img {
+        height: 100%;
+      }
+    }
+    form {
+      @include hw(100%, 50%);
+      @include flex;
+      flex-direction: column;
+     
+      input{
+        @include button;
+        @include hw(5rem, 60%);
+        margin: 10px;
+        display: block;
+        padding: 20px;
+        color: $w;
+        font-size: 2rem;
+        text-transform: lowercase;
+        &::placeholder {
+          @include gradient-text;
+          font-size: 1.5rem;
+          text-transform: capitalize;
+        }
+        &:hover {
+          text-shadow: none;
+          color: $w;
+        }
+      }
+      textarea {
+        @include button;
+        @include hw(8rem, 60%);
+        margin: 10px;
+        display: block;
+        padding: 20px;
+        text-transform: lowercase;
+        &::placeholder {
+          @include gradient-text;
+          font-size: 1.5rem;
+          text-transform: capitalize;
+        }
+        &:hover {
+          text-shadow: none;
+          color: $w;
+        }
+      }
+      button {
+          @include gradient-text;
+          margin-top: 10px;
+          padding: 10px;
+          font-size: 22px;
+          font-weight: 700;
+          border-radius: 20px;
+          letter-spacing: 1.5px;
+          box-shadow: inset -20px -20px 25px $b, 2px 3px 15px $b;
+          transition: all 0.2s linear;
+          border: 2px solid $waa;
+          cursor: pointer;
+          &:hover {
+            color: $w;
+            border: 0.01px solid $waa;
+            box-shadow: none;
+          }
+      }
+    }
+  }
+}
+
+.footer {
+  @include hw(8vh, 100%);
+  @include flex;
+  margin-top: 40px;
+  justify-content: space-around;
+  background: $waa;
+  backdrop-filter: blur(5px);
+  border-top: 2px solid $wa;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  .left {
+    p {
+      @include gradient-text;
+      font-size: 2rem;
+
+    }
   }
 }
 
@@ -218,7 +588,7 @@ nav {
         border: 1px solid $waa;
         background: $wa;
         backdrop-filter: blur(5px);
-        box-shadow: inset 1rem 1rem 1rem $b, 1rem 1rem 1rem $b;
+        box-shadow: inset 0.5rem 0.5rem 1rem $b, 0.5rem 0.5rem 1rem $b;
         margin: 5px;
         transition: all 0.3s ease;
       }
@@ -235,20 +605,20 @@ nav {
       backdrop-filter: blur(20px);
       box-shadow: inset 1rem 1rem 1rem $b, 1rem 1rem 1rem $b;
       padding: 5%;
-      transition: all 0.3s ease;
+      transition: all 0.3s linear;
       li {
         display: block;
-        margin-bottom: 5px; 
+        margin-bottom: 5px;
         a {
           text-shadow: none;
           color: none;
           @include gradient-text;
           font-weight: 700;
         }
-      }  
-     }
+      }
+    }
 
-     .menu .f {
+    .menu .f {
       position: relative;
       top: 5px;
       left: 0;
@@ -256,8 +626,9 @@ nav {
       box-shadow: none;
       background: #000;
       border: 1px solid $w;
+      animation: rotate 6s linear infinite;
     }
-  
+
     .menu .s {
       position: relative;
       top: -8px;
@@ -267,10 +638,12 @@ nav {
       background: #000;
       border: 1px solid $w;
     }
-  
+
     .active {
       display: none !important;
       z-index: 99;
+      opacity: 0;
+      transition: all 0.3s linear;
     }
   }
   .Home {
@@ -296,7 +669,136 @@ nav {
       @include hw(100%, 100%);
       img {
         width: 100%;
-        animation: none;
+      }
+    }
+  }
+
+  .About {
+    margin-top: 2rem;
+    @include hw(100%, 100%);
+    .heading {
+      @include hw(10vh, 80%);
+      h2 {
+        font-size: 2.5rem;
+      }
+    }
+    .main {
+      @include hw(100%, 90%);
+      flex-direction: column;
+      .dev {
+        margin: 1.5rem;
+        padding: 5%;
+        h3 {
+          font-size: 4rem;
+        }
+        p {
+          font-size: 2rem;
+        }
+        a {
+          font-size: 2.5rem;
+        }
+      }
+      .img {
+        @include hw(100%, 100%);
+        img {
+          animation: none;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .Project {
+    @include hw(100%, 100%);
+    margin-top: 2rem;
+    .heading {
+      @include hw(10vh, 80%);
+      h2 {
+        font-size: 2.5rem;
+      }
+    }
+    .main {
+      @include hw(100%, 90%);
+      flex-direction: column;
+      margin: 1rem 0 4rem 0;
+      .p {
+        margin-top: 4rem;
+      }
+    }
+  }
+
+  .Blog {
+    @include hw(100%, 100%);
+    margin: 2rem 0 2rem 0;
+    .heading {
+      @include hw(10vh, 80%);
+      h2 {
+        font-size: 2.5rem;
+      }
+    }
+    .main {
+      @include hw(100%, 100%);
+    }
+  }
+
+  .Services {
+    @include hw(100%, 100%);
+    .heading {
+      @include hw(12vh, 80%);
+      h2 {
+        font-size: 2.5rem;
+      }
+    }
+    .main {
+      @include hw(100%, 100%);
+      flex-direction: column;
+      margin-top: 2rem;
+      overflow: hidden;
+      .sers {
+        .ser {
+          min-width: 85%;
+          margin: 15px;
+        }
+      }
+      .skills {
+        @include hw(100%, 100%);
+        .skill {
+          margin: 5px;
+          padding: 10px;
+          span {
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+  }
+
+  .Contact {
+    margin-top: 50px;
+    @include hw(100%, 100%);
+    .heading {
+      width: 80%;
+      h2 {
+        font-size: 2.5rem;
+      }
+    }
+    .main {
+      @include hw(100%, 100%);
+      flex-direction: column;
+      .img {
+        @include hw(100%, 100%);
+        img {
+          @include hw(100%, 100%);
+        }
+      }
+      form {
+        @include hw(100%, 100%);
+        input {
+          width: 80%;
+        }
+        textarea {
+          width: 80%;
+        }
       }
     }
   }
@@ -309,3 +811,12 @@ nav {
 // git branch -M main
 // git remote add origin https://github.com/Abhishek01web/web.git
 // git push -u origin main
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
